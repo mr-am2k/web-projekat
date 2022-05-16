@@ -11,7 +11,7 @@ const MainNavigation = () => {
             className={(navData) => (navData.isActive ? classes.active : '')}
             to='/'
           >
-            <h1 className={classes.logo}>Knjige</h1>
+            <h1 className={classes.logo}>Saudade</h1>
           </NavLink>
         </div>
         <div className={classes['nav-content']}>

@@ -1,4 +1,4 @@
 .main-container{
     margin: 3rem 0;
-    height: 70vh;
+    min-height: 70vh;
 }

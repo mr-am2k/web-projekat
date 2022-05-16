@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Container } from '@mui/material';
 import Navbar from './components/navigation/Navbar';
@@ -6,8 +6,17 @@ import Footer from './components/navigation/Footer';
 import Home from './pages/Home';
 import Books from './pages/Books';
 import MyBooks from './pages/MyBooks';
-import classes from './App.module.css'
+import classes from './App.module.css';
+import { getAuthors } from './store/authors-actions';
+import { getBooks } from './store/books-actions';
+import { useDispatch } from 'react-redux';
 const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    //Pozivanje prilikom loada aplikaceije, get requestova, koji osiguravaju da su nam svi autori i knjige dostupni, kako bi ih mogli globalno koristiti
+    dispatch(getAuthors());
+    dispatch(getBooks());
+  }, [dispatch]);
   return (
     <Fragment>
       <Navbar />
