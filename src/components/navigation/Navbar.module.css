@@ -1,0 +1,35 @@
+.container {
+  height: 5rem;
+  background-color: #a91079;
+  padding: 0 10%;
+  color: white;
+  border-radius: 0 0 1rem 1rem;
+}
+
+.container nav {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container a {
+  color: white;
+  text-decoration: none;
+}
+
+.container a:hover,
+.container a:active,
+.container a.active {
+  color: #95bcf0;
+  padding-bottom: 0.25rem;
+  border-bottom: 4px solid #95bcf0;
+}
+
+.nav-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 12rem;
+}
+

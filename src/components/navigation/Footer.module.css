@@ -1,0 +1,12 @@
+.footer{
+    padding: 50px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+@media screen and (max-width: 760px) {
+    .footer{
+        position: relative;
+    }
+}
