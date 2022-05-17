@@ -7,15 +7,3 @@
   margin: 0 10rem;
   text-align: center;
 }
-.card-container {
-  display: flex !important;
-  justify-content: center;
-  margin-top: 4rem;
-}
-.card-media {
-  min-width: 340px;
-}
-.action-buttons {
-  display: flex;
-  justify-content: space-between;
-}

@@ -7,7 +7,7 @@ const Footer = () => {
       <Typography variant='h6' align='center' gutterBottom>
         Footer
       </Typography>
-      <Typography variant='subtitle1' align='center' color='textSecondary'>
+      <Typography variant='subtitle1' align='center'>
         Something to give purpose to the footer
       </Typography>
     </footer>

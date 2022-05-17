@@ -7,10 +7,7 @@ const MainNavigation = () => {
     <Container className={classes.container} maxWidth='lg'>
       <nav className={classes.navbar}>
         <div>
-          <NavLink
-            className={(navData) => (navData.isActive ? classes.active : '')}
-            to='/'
-          >
+          <NavLink to='/'>
             <h1 className={classes.logo}>Saudade</h1>
           </NavLink>
         </div>
