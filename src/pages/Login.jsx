@@ -14,26 +14,29 @@ import { adminActions } from '../store/admin-slice';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import classes from './Login.module.css';
 
-const validateUsername = (username, func1, func2) => {
+let usernameError = false; //Zbog problema sa useState-om se koriste ove dvije varijable
+let passwordError = false;
+const validateUsername = (username, func1) => {
   if (username.trim() === '') {
-    func1(true);
-    func2('Polje korisnicko ime ne smije biti prazno');
+    usernameError = true;
+    func1('Polje korisnicko ime ne smije biti prazno');
   } else if (username.trim() !== 'admin') {
-    func1(true);
-    func2('Pogresno korisnicko ime');
+    usernameError = true;
+    func1('Pogresno korisnicko ime');
   } else {
-    func1(false);
+    usernameError = false;
+    func1('')
   }
 };
-const validatePassword = (password, func1, func2) => {
+const validatePassword = (password, func1) => {
   if (password.trim() === '') {
-    func1(true);
-    func2('Polje sifra ne smije biti prazno');
+    passwordError = true;
+    func1('Polje sifra ne smije biti prazno');
   } else if (password.trim() !== 'admin') {
-    func1(true);
-    func2('Pogresna sifra');
+    passwordError = true;
+    func1('Pogresna sifra')
   } else {
-    func1(false);
+    passwordError = false;
   }
 };
 
@@ -41,29 +44,30 @@ const theme = createTheme();
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [usernameError, setUsernameError] = useState();
-  const [passwordError, setPasswordError] = useState();
-  const [usernameErrorMessage, setUsernameErrorMessage] = useState('');
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
+  const [userError, setUserError] = useState()
+  const [passError, setPassError] = useState()
+  const [usernameErrorMessage, setUsernameErrorMessage] = useState('')
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState('')
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    validateUsername(
-      data.get('username'),
-      setUsernameError,
-      setUsernameErrorMessage
-    );
-    validatePassword(
-      data.get('password'),
-      setPasswordError,
-      setPasswordErrorMessage
-    );
+    validateUsername(data.get('username'), setUsernameErrorMessage);
+    validatePassword(data.get('password'), setPasswordErrorMessage);
+    if (usernameError) {
+        setUserError(true)
+    }else{
+        setUserError(false)
+    }
+    if (passwordError) {
+        setPassError(true)
+    }else{
+        setPassError(false)
+    }
     if (!usernameError && !passwordError) {
       navigate('/');
-      dispatch(adminActions.changeLoginStatus(true))
+      dispatch(adminActions.changeLoginStatus(true));
     }
   };
-
   return (
     <ThemeProvider theme={theme}>
       <Container component='main' maxWidth='xs'>
@@ -96,7 +100,7 @@ const Login = () => {
               autoComplete='username'
               autoFocus
             />
-            {usernameError && (
+            {userError && (
               <Grid container>
                 <Grid item>
                   <Typography className={classes['error-message']} variant='h4'>
@@ -115,7 +119,7 @@ const Login = () => {
               id='password'
               autoComplete='current-password'
             />
-            {passwordError && (
+            {passError && (
               <Grid container>
                 <Grid item>
                   <Typography className={classes['error-message']} variant='h4'>
