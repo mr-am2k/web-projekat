@@ -10,3 +10,12 @@
   display: flex;
   justify-content: space-between;
 }
+
+.mui-button {
+  background-color: #2E0249 !important;
+  color: white !important;
+}
+.mui-button:hover,
+.mui-button:active {
+  background-color: #570A57 !important;
+}

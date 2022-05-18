@@ -20,7 +20,7 @@ const Home = () => {
     <Container>
       <Container className={classes['center-content']}>
         <Typography className={classes.quote} gutterBottom variant='h3'>
-          Not all readers are leaders, but all leaders are readers
+          "Not all readers are leaders, but all leaders are readers"
         </Typography>
       </Container>
       {isLoading && <Loading/>}

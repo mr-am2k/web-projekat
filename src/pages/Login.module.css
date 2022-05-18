@@ -1,0 +1,14 @@
+.login-button{
+    background-color: #2E0249 !important;
+}
+.login-button:hover,
+.login-button:hover{
+    background-color: #570A57 !important;
+}
+.error-message{
+    font-size: 1rem !important;
+    color: red;
+}
+.input-field{
+    width: 100%;
+}

@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Books from './pages/Books';
 import MyBooks from './pages/MyBooks';
 import CustomBook from './pages/CustomBook'
+import Login from './pages/Login';
 import classes from './App.module.css';
 import { getAuthors } from './store/authors-actions';
 import { getBooks } from './store/books-actions';
@@ -27,6 +28,7 @@ const App = () => {
           <Route path='/books/*' exact element={<Books />}/> 
           <Route path='/books/:bookId' element={<CustomBook/>}/>
           <Route path='/my-books' element={<MyBooks />} />
+          <Route path='/login' element={<Login />} />
         </Routes>
       </Container>
       <Footer />

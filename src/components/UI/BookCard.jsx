@@ -9,7 +9,7 @@ import {
   Button,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import classes from './BookCard.module.css'
+import classes from './BookCard.module.css';
 const BookCard = (props) => {
   const navigation = useNavigate();
   const moreInfoRedirectHandler = () => {
@@ -23,7 +23,7 @@ const BookCard = (props) => {
             onClick={moreInfoRedirectHandler}
             className={classes['card-media']}
             component='img'
-            height={`'${props.height}'`}
+            height={props.height}
             image={props.bookImage} //Pri loadu stranice se ucitavaju podaci, te se slika samo prikazuje kad se podaci ucitaju, tj. kada random book postoji
             alt='Book picture'
           />
@@ -38,13 +38,18 @@ const BookCard = (props) => {
         </CardActionArea>
         <CardActions className={classes['action-buttons']}>
           <Button
+            className={classes['mui-button']}
             onClick={moreInfoRedirectHandler}
             size='small'
             color='primary'
           >
             Vise informacija
           </Button>
-          <Button size='small' color='primary'>
+          <Button
+            className={classes['mui-button']}
+            size='small'
+            color='primary'
+          >
             Dodaj u moje knjige
           </Button>
         </CardActions>

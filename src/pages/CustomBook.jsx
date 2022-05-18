@@ -1,6 +1,6 @@
 import { useState, useEffect, Fragment } from 'react';
 import { useParams } from 'react-router-dom';
-import { Container } from '@mui/material';
+import { Button } from '@mui/material';
 import { useSelector } from 'react-redux';
 import Loading from '../components/UI/Loading';
 import classes from './CustomBook.module.css';
@@ -18,7 +18,7 @@ const CustomBook = (props) => {
     <Fragment>
       {isLoading && <Loading />}
       {!isLoading && (
-        <Container className={classes['main-container']}>
+        <div className={classes['main-container']}>
           <div className={classes['image-box']}>
             <img
               src={targetedBook.image}
@@ -28,17 +28,28 @@ const CustomBook = (props) => {
             />
           </div>
           <div className={classes['content-box']}>
-            <h3 className={classes['content-info']}>
-              Naziv: {targetedBook.name}
-            </h3>
-            <h3 className={classes['content-info']}>
-              Autor: {targetedBook.author.name}
-            </h3>
-            <h3 className={classes['content-info']}>
-              Zanr: {targetedBook.genre}
-            </h3>
+            <div className={classes['content-div']}>
+              <h3 className={classes['content-info']}>
+                Naziv: {targetedBook.name}
+              </h3>
+            </div>
+            <div className={classes['content-div']}>
+              <h3 className={classes['content-info']}>
+                Autor: {targetedBook.author.name}
+              </h3>
+            </div>
+            <div className={classes['content-div']}>
+              <h3 className={classes['content-info']}>
+                Zanr: {targetedBook.genre}
+              </h3>
+            </div>
+
+            <div className={classes['content-button']}>
+              <Button className={classes['mui-button']}>Dodaj u moje knjige</Button>
+            </div>
           </div>
-        </Container>
+
+        </div>
       )}
     </Fragment>
   );
