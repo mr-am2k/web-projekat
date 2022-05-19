@@ -1,16 +1,16 @@
-.books-buttons {
-  padding: 1.5rem 1rem;
+.books-form {
   display: flex !important;
   justify-content: center !important;
 }
+.input-field {
+  margin: 1rem 1rem !important;
+}
 .action-button {
   background-color: #2e0249 !important;
-  margin: 0 1rem !important;
+  margin: 1rem 1rem !important;
+  max-height: 4rem !important;
 }
 .action-button:hover,
 .action-button:hover {
   background-color: #570a57 !important;
-}
-.books-grid {
-  padding: 1rem 0;
 }
