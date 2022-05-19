@@ -1,5 +1,4 @@
 import { authorActions } from './authors-slice';
-
 export const getAuthors = () => {
   return async (dispatch) => {
     const fetchData = async () => {
@@ -15,6 +14,30 @@ export const getAuthors = () => {
     try {
       const authorData = await fetchData();
       dispatch(authorActions.replaceAuthors(authorData));
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const addAuthor = (newAuthor) => {
+  return async (dispatch) => {
+    const postData = async () => {
+      const response = await fetch(
+        'https://ptf-web-dizajn-2022.azurewebsites.net/authors',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newAuthor),
+        }
+      );
+      if (!response.ok) {
+        throw new Error('Postoji autor sa tim imenom');
+      }
+    };
+    try {
+      await postData();
+      await dispatch(authorActions.addNewAuthor(newAuthor));
     } catch (error) {
       console.log(error.message);
     }

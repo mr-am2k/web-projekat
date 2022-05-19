@@ -1,4 +1,10 @@
+.author-container{
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+}
 .books-form {
+  width: 100%;
   display: flex !important;
   justify-content: center !important;
 }
@@ -13,4 +19,15 @@
 .action-button:hover,
 .action-button:hover {
   background-color: #570a57 !important;
+}
+.error-message{
+  width: 40%;
+  height: 3rem;
+  background-color: #a91079;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 1rem;
 }

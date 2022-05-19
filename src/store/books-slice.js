@@ -8,7 +8,7 @@ const bookSlice = createSlice({
     replaceBooks(state, action) {
       state.books = action.payload;
     },
-    addNewAuthor(state, action) {
+    addNewBook(state, action) {
       const newBook = action.payload;
       state.books.push(newBook);
     },
