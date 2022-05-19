@@ -2,8 +2,17 @@ import { useState } from 'react';
 import { Button, Box, TextField } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { addAuthor } from '../../store/authors-actions';
-import classes from './AuthorForm.module.css';
-let existingAuthor = false;
+import classes from './Form.module.css';
+const validateAuthor = (arrayOfAuthors, newAuthorName) => {
+  //Koristi se za provjeru da li postoji vec autor sa tim podacima, kako bi izbjegli fetch istog autora
+  let test;
+  arrayOfAuthors.forEach((author) => {
+    if (author.name === newAuthorName) {
+      test = true;
+    }
+  });
+  return test;
+};
 const AuthorFrom = () => {
   const dispatch = useDispatch();
   const authors = useSelector((state) => state.authors.authors);
@@ -17,18 +26,10 @@ const AuthorFrom = () => {
     const newAuthor = {
       name: authorName,
     };
-    authors.forEach((author) => {
-      if (author.name === newAuthor.name) {
-        existingAuthor = true;
-        setExtAuthor(false);
-        return;
-      } else {
-        existingAuthor = false;
-        setExtAuthor(true);
-      }
-    });
-    if (!existingAuthor) {
+    if (validateAuthor(authors, newAuthor.name)) {
       setExtAuthor(true);
+    } else {
+      setExtAuthor(false);
       dispatch(addAuthor(newAuthor));
     }
   };
@@ -56,7 +57,7 @@ const AuthorFrom = () => {
       </Box>
       {extAuthor && (
         <div className={classes['error-message']}>
-          <h1>Error</h1>
+          <h1>Autor vec postoji</h1>
         </div>
       )}
     </Box>

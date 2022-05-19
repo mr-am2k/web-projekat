@@ -31,3 +31,10 @@
   color: white;
   border-radius: 1rem;
 }
+
+@media screen and (max-width: 475px ) {
+  .error-message{
+    width: 100%;
+  }
+  
+}

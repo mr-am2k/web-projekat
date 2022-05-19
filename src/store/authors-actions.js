@@ -32,7 +32,7 @@ export const addAuthor = (newAuthor) => {
         }
       );
       if (!response.ok) {
-        throw new Error('Postoji autor sa tim imenom');
+        throw new Error('Failed to post');
       }
     };
     try {
