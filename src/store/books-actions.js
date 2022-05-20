@@ -38,13 +38,34 @@ export const addBook = (newBook) => {
           body: JSON.stringify(newBookForSending),
         }
       );
-      if ((await response).status !== 201 ) {
+      if (!((await response).ok) ) {
         throw new Error('Failed to post');
       }
     };
     try {
       await postData();
-      await dispatch(bookActions.addNewBook(newBook));
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const deleteBook = (bookForDeleteId) => {
+  return async (dispatch) => {
+    const removeData = async (dispatch) => {
+      const response = fetch(
+        'https://ptf-web-dizajn-2022.azurewebsites.net/books/{' + bookForDeleteId + '}',
+        {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
+      if (!((await response).ok) ) {
+        throw new Error('Failed to delete');
+      }
+    };
+    try {
+      await removeData();
     } catch (error) {
       console.log(error.message);
     }

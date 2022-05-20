@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button, Box, TextField, MenuItem } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { addBook } from '../../store/books-actions';
+import { bookActions } from '../../store/books-slice';
 import classes from './Form.module.css';
 const validateBook = (arrayOfBooks, newBookName) => {
   let test;
@@ -60,6 +61,10 @@ const BooksForm = () => {
     } else {
       setExtBook(false);
       dispatch(addBook(newBook));
+      dispatch(bookActions.addNewBook(true)); //Koristimo ovo zbog toga, sto je potrebno da dobijemo id knjige sa servera, te kada dodamo knjigu, potrebno je fetchati podatke sa servera, a nakon sekund ovu varijablu vracamo na false, pa ako neko zeli dodati novu knjigu, da to moze bez da je potrebno reloadati page
+      setTimeout(() => {
+        dispatch(bookActions.addNewBook(false));
+      }, 1000);
     }
   };
   return (

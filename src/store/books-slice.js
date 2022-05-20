@@ -3,14 +3,14 @@ const bookSlice = createSlice({
   name: 'book',
   initialState: {
     books: [],
+    addedNewBook: false
   },
   reducers: {
     replaceBooks(state, action) {
       state.books = action.payload;
     },
     addNewBook(state, action) {
-      const newBook = action.payload;
-      state.books.push(newBook);
+      state.addedNewBook = action.payload
     },
   },
 });

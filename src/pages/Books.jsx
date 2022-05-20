@@ -1,15 +1,18 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Container, Grid, Button } from '@mui/material';
 import BookCard from '../components/UI/BookCard';
 import BooksForm from '../components/Books/BooksForm';
 import AuthorFrom from '../components/Books/AuthorFrom';
+import { getBooks } from '../store/books-actions';
 import classes from './Books.module.css';
 const Books = () => {
+  const dispatch = useDispatch()
   const books = useSelector((state) => state.books.books);
   const adminStatus = useSelector((state) => state.admin.isLoggedIn);
   const [addBook, setAddBook] = useState(true);
   const [addAuthor, setAddAuthor] = useState(false);
+  const newBookAdded = useSelector(state=> state.books.addedNewBook)
 
   const addBookHandler = () => {
     setAddBook(true);
@@ -20,6 +23,10 @@ const Books = () => {
     setAddBook(false);
   };
 
+  useEffect(()=>{
+    console.log(newBookAdded)
+    dispatch(getBooks())
+  },[dispatch, newBookAdded])
   return (
     <Container>
       {adminStatus && (

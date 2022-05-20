@@ -9,11 +9,33 @@ import {
   Button,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, dispatch, useDispatch } from 'react-redux';
+import { deleteBook } from '../../store/books-actions';
+import { bookActions } from '../../store/books-slice';
 import classes from './BookCard.module.css';
+const getBookID = (books, bookName) => {
+  let bookID;
+  books.forEach((book) => {
+    if (book.name === bookName) {
+      bookID = book.id;
+    }
+  });
+  return bookID;
+};
 const BookCard = (props) => {
+  const dispatch = useDispatch();
+  const adminStatus = useSelector((state) => state.admin.isLoggedIn);
+  const books = useSelector((state) => state.books.books);
   const navigation = useNavigate();
   const moreInfoRedirectHandler = () => {
     navigation('/books/' + props.bookId);
+  };
+  const removeBookHandler = () => {
+    dispatch(deleteBook(getBookID(books, props.bookName)));
+    dispatch(bookActions.addNewBook(true));
+    setTimeout(() => {
+      dispatch(bookActions.addNewBook(false));
+    }, 1000);
   };
   return (
     <Container className={classes['card-container']}>
@@ -45,13 +67,25 @@ const BookCard = (props) => {
           >
             Vise informacija
           </Button>
-          <Button
-            className={classes['mui-button']}
-            size='small'
-            color='primary'
-          >
-            Dodaj u moje knjige
-          </Button>
+          {!adminStatus && (
+            <Button
+              className={classes['mui-button']}
+              size='small'
+              color='primary'
+            >
+              Dodaj u moje knjige
+            </Button>
+          )}
+          {adminStatus && (
+            <Button
+              onClick={removeBookHandler}
+              className={classes['mui-button']}
+              size='small'
+              color='primary'
+            >
+              Ukloni knjigu
+            </Button>
+          )}
         </CardActions>
       </Card>
     </Container>
