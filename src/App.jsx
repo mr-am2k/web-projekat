@@ -16,7 +16,7 @@ import { useDispatch } from 'react-redux';
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    //Pozivanje prilikom loada aplikaceije, get requestova, koji osiguravaju da su nam svi autori i knjige dostupni, kako bi ih mogli globalno koristiti
+    //Pozivanje prilikom loada aplikaceije, get requestova, koji osiguravaju da su nam svi autori, knjige i nase knjige dostupni, kako bi ih mogli globalno koristiti
     dispatch(getAuthors());
     dispatch(getBooks());
     dispatch(getMyBooks());

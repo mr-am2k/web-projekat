@@ -8,17 +8,18 @@
 }
 .action-buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .mui-button {
-  background-color: #2E0249 !important;
+  background-color: #2e0249 !important;
   color: white !important;
 }
 .mui-button:hover,
 .mui-button:active {
-  background-color: #570A57 !important;
+  background-color: #570a57 !important;
 }
-.info-paragraph{
+
+.info-paragraph {
   text-align: center;
 }

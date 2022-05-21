@@ -13,9 +13,10 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteBook } from '../../store/books-actions';
 import { bookActions } from '../../store/books-slice';
-import { getMyBooks, updateMyBooks } from '../../store/my-book-actions';
+import { updateMyBooks } from '../../store/my-book-actions';
 import classes from './BookCard.module.css';
 const getBookID = (books, bookName) => {
+  //Koristi se da dobijemo id knjige, posto njega koristimo u URL-u
   let bookID;
   books.forEach((book) => {
     if (book.name === bookName) {
@@ -44,6 +45,9 @@ const BookCard = (props) => {
   };
 
   const addToMyBooksHandler = () => {
+    let bookExists;
+    let newMyBooks;
+    let emptyBooks = myBooks === null;
     const newMyBook = {
       id: props.bookId,
       name: props.bookName,
@@ -51,14 +55,9 @@ const BookCard = (props) => {
       genre: props.bookGenre,
       author: props.authorName,
     };
-    let bookExists;
-    let newMyBooks;
-    let emptyBooks = myBooks === null;
     if (emptyBooks === true) {
-      console.log('ovdje trebam biti');
       bookExists = false;
     } else {
-      console.log('ovdje ne trebam biti');
       bookExists = myBooks.find((book) => book.id === newMyBook.id);
     }
     if (bookExists) {
@@ -80,18 +79,15 @@ const BookCard = (props) => {
     }, 2000);
   };
   const removeFromMyBooksHandler = () => {
-    let indexForRemoving
-    let temporaryBooks = [...myBooks]
-    console.log(myBooks)
+    let indexForRemoving;
+    let temporaryBooks = [...myBooks];
     const removeBookID = props.bookId;
-    myBooks.find((book, index) => {
-      if(book.id === removeBookID)
-      indexForRemoving = index
+    indexForRemoving = myBooks.find((book, index) => {
+      if (book.id === removeBookID) return index;
     });
-    console.log(indexForRemoving)
-    temporaryBooks.splice(indexForRemoving,1)
+    console.log(indexForRemoving);
+    temporaryBooks.splice(indexForRemoving, 1);
     dispatch(updateMyBooks(temporaryBooks));
-    dispatch(getMyBooks())
   };
   return (
     <Container className={classes['card-container']}>
@@ -133,7 +129,7 @@ const BookCard = (props) => {
               Dodaj u moje knjige
             </Button>
           )}
-          {adminStatus && !props.myBook && (
+          {adminStatus && !props.myBook && !props.home && (
             <Button
               onClick={removeBookHandler}
               className={classes['mui-button']}

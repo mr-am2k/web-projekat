@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const myBookSlice = createSlice({
   name: 'myBook',
   initialState: {
-    myBooks: []
+    myBooks: [],
   },
   reducers: {
     replaceBooks(state, action) {

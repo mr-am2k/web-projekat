@@ -5,10 +5,10 @@ const Footer = () => {
   return (
     <footer className={classes.footer}>
       <Typography variant='h6' align='center' gutterBottom>
-        Footer
+        Copyright: am2k
       </Typography>
       <Typography variant='subtitle1' align='center'>
-        Something to give purpose to the footer
+        2022
       </Typography>
     </footer>
   );

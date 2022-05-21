@@ -5,19 +5,16 @@
   color: white;
   border-radius: 0 0 1rem 1rem;
 }
-
 .container nav {
   height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 .container a {
   color: white;
   text-decoration: none;
 }
-
 .container a:hover,
 .container a:active,
 .container a.active {
@@ -25,10 +22,10 @@
   padding-bottom: 0.25rem;
   border-bottom: 4px solid #95bcf0;
 }
-
 .nav-content {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   width: 15rem;
 }
 .nav-content a {

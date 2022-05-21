@@ -7,12 +7,12 @@ import AuthorFrom from '../components/Books/AuthorFrom';
 import { getBooks } from '../store/books-actions';
 import classes from './Books.module.css';
 const Books = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const books = useSelector((state) => state.books.books);
   const adminStatus = useSelector((state) => state.admin.isLoggedIn);
   const [addBook, setAddBook] = useState(true);
   const [addAuthor, setAddAuthor] = useState(false);
-  const newBookAdded = useSelector(state=> state.books.addedNewBook)
+  const newBookAdded = useSelector((state) => state.books.addedNewBook);
 
   const addBookHandler = () => {
     setAddBook(true);
@@ -23,9 +23,9 @@ const Books = () => {
     setAddBook(false);
   };
 
-  useEffect(()=>{
-    dispatch(getBooks())
-  },[dispatch, newBookAdded])
+  useEffect(() => {
+    dispatch(getBooks());
+  }, [dispatch, newBookAdded]);
   return (
     <Container>
       {adminStatus && (
@@ -45,6 +45,7 @@ const Books = () => {
             </Button>
           </Container>
           {addBook && <BooksForm />}
+          {/* Conditonal rendering, u zvaisnoti da li nam treba forma za autore ili knjige */}
           {addAuthor && <AuthorFrom />}
         </div>
       )}

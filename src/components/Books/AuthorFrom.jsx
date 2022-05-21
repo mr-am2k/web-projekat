@@ -31,7 +31,7 @@ const AuthorFrom = () => {
     } else {
       setExtAuthor(false);
       dispatch(addAuthor(newAuthor));
-      setAuthorName('')
+      setAuthorName('');
     }
   };
   return (
@@ -52,15 +52,19 @@ const AuthorFrom = () => {
             label='Autor'
           />
         </div>
+      </Box>
+      <Box>
         <Button onClick={addAuthorHandler} className={classes['action-button']}>
           Dodaj
         </Button>
       </Box>
-      {extAuthor && (
-        <div className={classes['error-message']}>
-          <h1>Autor vec postoji</h1>
-        </div>
-      )}
+      <Box className={classes['error-box']}>
+        {extAuthor && (
+          <div className={classes['error-message']}>
+            <p>Autor vec postoji</p>
+          </div>
+        )}
+      </Box>
     </Box>
   );
 };

@@ -25,7 +25,7 @@ const validateUsername = (username, func1) => {
     func1('Pogresno korisnicko ime');
   } else {
     usernameError = false;
-    func1('')
+    func1('');
   }
 };
 const validatePassword = (password, func1) => {
@@ -34,7 +34,7 @@ const validatePassword = (password, func1) => {
     func1('Polje sifra ne smije biti prazno');
   } else if (password.trim() !== 'admin') {
     passwordError = true;
-    func1('Pogresna sifra')
+    func1('Pogresna sifra');
   } else {
     passwordError = false;
   }
@@ -44,24 +44,24 @@ const theme = createTheme();
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [userError, setUserError] = useState()
-  const [passError, setPassError] = useState()
-  const [usernameErrorMessage, setUsernameErrorMessage] = useState('')
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState('')
+  const [userError, setUserError] = useState();
+  const [passError, setPassError] = useState();
+  const [usernameErrorMessage, setUsernameErrorMessage] = useState('');
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     validateUsername(data.get('username'), setUsernameErrorMessage);
     validatePassword(data.get('password'), setPasswordErrorMessage);
     if (usernameError) {
-        setUserError(true)
-    }else{
-        setUserError(false)
+      setUserError(true);
+    } else {
+      setUserError(false);
     }
     if (passwordError) {
-        setPassError(true)
-    }else{
-        setPassError(false)
+      setPassError(true);
+    } else {
+      setPassError(false);
     }
     if (!usernameError && !passwordError) {
       navigate('/');

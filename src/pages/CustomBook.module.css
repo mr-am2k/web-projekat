@@ -39,7 +39,7 @@
 .content-button button {
   width: 100%;
   padding: 1rem;
-  background-color: #2E0249;
+  background-color: #2e0249;
   color: white;
   border: none;
   border-radius: 1rem;
@@ -48,9 +48,9 @@
 
 .mui-button:hover,
 .mui-button:active {
-  background-color: #570A57 !important;
+  background-color: #570a57 !important;
 }
-.info-paragraph{
+.info-paragraph {
   margin-top: 2rem;
   text-align: center;
 }

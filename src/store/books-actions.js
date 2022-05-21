@@ -26,8 +26,8 @@ export const addBook = (newBook) => {
     name: newBook.name,
     genre: newBook.genre,
     image: newBook.image,
-    authorId: newBook.author.id
-  }
+    authorId: newBook.author.id,
+  };
   return async (dispatch) => {
     const postData = async (dispatch) => {
       const response = fetch(
@@ -38,7 +38,7 @@ export const addBook = (newBook) => {
           body: JSON.stringify(newBookForSending),
         }
       );
-      if (!((await response).ok) ) {
+      if (!(await response).ok) {
         throw new Error('Failed to post');
       }
     };
@@ -54,13 +54,15 @@ export const deleteBook = (bookForDeleteId) => {
   return async (dispatch) => {
     const removeData = async (dispatch) => {
       const response = fetch(
-        'https://ptf-web-dizajn-2022.azurewebsites.net/books/{' + bookForDeleteId + '}',
+        'https://ptf-web-dizajn-2022.azurewebsites.net/books/{' +
+          bookForDeleteId +
+          '}',
         {
           method: 'DELETE',
           headers: { 'Content-Type': 'application/json' },
         }
       );
-      if (!((await response).ok) ) {
+      if (!(await response).ok) {
         throw new Error('Failed to delete');
       }
     };

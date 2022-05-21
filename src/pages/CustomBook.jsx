@@ -10,6 +10,7 @@ const CustomBook = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const books = useSelector((state) => state.books.books);
   const myBooks = useSelector((state) => state.myBooks.myBooks);
+  const adminStatus = useSelector((state) => state.admin.isLoggedIn);
   const { bookId } = useParams();
   const [existingBook, setExistingBook] = useState(false);
   const [addedBook, setAddedBook] = useState(false);
@@ -86,14 +87,17 @@ const CustomBook = (props) => {
               </h3>
             </div>
 
-            <div className={classes['content-button']}>
-              <Button
-                onClick={addToMyBooksHandler}
-                className={classes['mui-button']}
-              >
-                Dodaj u moje knjige
-              </Button>
-            </div>
+            {!adminStatus && (
+              <div className={classes['content-button']}>
+                <Button
+                  onClick={addToMyBooksHandler}
+                  className={classes['mui-button']}
+                >
+                  Dodaj u moje knjige
+                </Button>
+              </div>
+            )}
+
             {existingBook && (
               <p className={classes['info-paragraph']}>
                 Vec ste dodali tu knjigu

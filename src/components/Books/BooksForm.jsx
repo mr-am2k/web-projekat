@@ -5,6 +5,7 @@ import { addBook } from '../../store/books-actions';
 import { bookActions } from '../../store/books-slice';
 import classes from './Form.module.css';
 const validateBook = (arrayOfBooks, newBookName) => {
+  //Koristi se za provjeru da li vec postoji knjiga sa ovim nazivom
   let test;
   arrayOfBooks.forEach((book) => {
     if (book.name === newBookName) {
@@ -15,6 +16,7 @@ const validateBook = (arrayOfBooks, newBookName) => {
 };
 
 const getAuthorID = (arrayOfAuthors, matchingName) => {
+  //Vraca id autora kojeg je korisnik izabrao, kako bi mogli ga proslijediti na bazu
   let authorID;
   arrayOfAuthors.forEach((author) => {
     if (author.name.trim() === matchingName.trim()) {
@@ -61,10 +63,10 @@ const BooksForm = () => {
     } else {
       setExtBook(false);
       dispatch(addBook(newBook));
-      setBookName('')
-      setBookGenre('')
-      setBookImage('')
-      setAuthor(authors[0].name)
+      setBookName(''); //Resetujemo vrijednost u input poljima nakon uspjesnog  dodavanja knjige
+      setBookGenre('');
+      setBookImage('');
+      setAuthor(authors[0].name);
       dispatch(bookActions.addNewBook(true)); //Koristimo ovo zbog toga, sto je potrebno da dobijemo id knjige sa servera, te kada dodamo knjigu, potrebno je fetchati podatke sa servera, a nakon sekund ovu varijablu vracamo na false, pa ako neko zeli dodati novu knjigu, da to moze bez da je potrebno reloadati page
       setTimeout(() => {
         dispatch(bookActions.addNewBook(false));
@@ -79,7 +81,7 @@ const BooksForm = () => {
         noValidate
         autoComplete='off'
       >
-        <div>
+        <div className={classes.inputs}>
           <TextField
             value={bookName}
             onChange={setBookNameHandler}
@@ -119,15 +121,19 @@ const BooksForm = () => {
             ))}
           </TextField>
         </div>
+      </Box>
+      <Box>
         <Button onClick={addBookHandler} className={classes['action-button']}>
           Dodaj
         </Button>
       </Box>
-      {extBook && (
-        <div className={classes['error-message']}>
-          <h1>Knjiga vec postoji</h1>
-        </div>
-      )}
+      <Box className={classes['error-box']}>
+        {extBook && (
+          <div className={classes['error-message']}>
+            <p>Knjiga vec postoji</p>
+          </div>
+        )}
+      </Box>
     </Box>
   );
 };

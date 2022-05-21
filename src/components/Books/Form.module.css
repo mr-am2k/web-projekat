@@ -1,4 +1,4 @@
-.author-container{
+.author-container {
   display: flex !important;
   flex-wrap: wrap !important;
   justify-content: center !important;
@@ -11,17 +11,23 @@
 .input-field {
   margin: 1rem 1rem !important;
 }
+.inputs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 .action-button {
   background-color: #2e0249 !important;
   margin: 1rem 1rem !important;
-  max-height: 4rem !important;
+  width: 15rem;
+  height: 3rem !important;
 }
 .action-button:hover,
 .action-button:hover {
   background-color: #570a57 !important;
 }
-.error-message{
-  width: 40%;
+.error-message {
+  width: 15rem;
   height: 3rem;
   background-color: #a91079;
   padding: 0.5rem;
@@ -31,10 +37,8 @@
   color: white;
   border-radius: 1rem;
 }
-
-@media screen and (max-width: 475px ) {
-  .error-message{
-    width: 100%;
-  }
-  
+.error-box {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
