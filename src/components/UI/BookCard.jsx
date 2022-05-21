@@ -89,9 +89,8 @@ const BookCard = (props) => {
   };
   const removeFromMyBooksHandler = () => {
     let temporaryBooks = [...myBooks];
-    let i = getID(myBooks, props.bookName)
-    console.log(i)
-    temporaryBooks.splice(i, 1);
+    let id = getID(myBooks, props.bookName)
+    temporaryBooks.splice(id, 1);
     dispatch(updateMyBooks(temporaryBooks));
   };
   return (

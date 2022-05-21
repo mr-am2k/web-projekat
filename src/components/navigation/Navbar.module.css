@@ -31,3 +31,26 @@
 .nav-content a {
   margin-left: 1rem;
 }
+.action-button {
+  color: white !important;
+  float: right;
+}
+.action-button:hover,
+.action-button:hover {
+  background-color: #570a57 !important;
+}
+.nav-hamburger {
+  display: none;
+}
+.hamburger-link a{
+  color: #570a57  !important;
+  text-decoration: none;
+}
+@media screen and (max-width: 475px) {
+  .nav-hamburger {
+    display: block;
+  }
+  .nav-default {
+    display: none;
+  }
+}
