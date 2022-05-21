@@ -50,6 +50,10 @@
 .mui-button:active {
   background-color: #570A57 !important;
 }
+.info-paragraph{
+  margin-top: 2rem;
+  text-align: center;
+}
 
 @media screen and (max-width: 900px) {
   .image-box {

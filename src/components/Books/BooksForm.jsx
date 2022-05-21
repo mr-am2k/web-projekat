@@ -61,6 +61,10 @@ const BooksForm = () => {
     } else {
       setExtBook(false);
       dispatch(addBook(newBook));
+      setBookName('')
+      setBookGenre('')
+      setBookImage('')
+      setAuthor(authors[0].name)
       dispatch(bookActions.addNewBook(true)); //Koristimo ovo zbog toga, sto je potrebno da dobijemo id knjige sa servera, te kada dodamo knjigu, potrebno je fetchati podatke sa servera, a nakon sekund ovu varijablu vracamo na false, pa ako neko zeli dodati novu knjigu, da to moze bez da je potrebno reloadati page
       setTimeout(() => {
         dispatch(bookActions.addNewBook(false));

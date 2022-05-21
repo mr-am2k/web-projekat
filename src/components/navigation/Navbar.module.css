@@ -28,8 +28,9 @@
 
 .nav-content {
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  width: 12rem;
+  width: 15rem;
 }
-
+.nav-content a {
+  margin-left: 1rem;
+}

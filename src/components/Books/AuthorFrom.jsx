@@ -31,6 +31,7 @@ const AuthorFrom = () => {
     } else {
       setExtAuthor(false);
       dispatch(addAuthor(newAuthor));
+      setAuthorName('')
     }
   };
   return (

@@ -24,7 +24,6 @@ const Books = () => {
   };
 
   useEffect(()=>{
-    console.log(newBookAdded)
     dispatch(getBooks())
   },[dispatch, newBookAdded])
   return (
@@ -56,6 +55,7 @@ const Books = () => {
               <BookCard
                 bookId={book.id}
                 height={240}
+                bookGenre={book.genre}
                 bookImage={book.image}
                 bookName={book.name}
                 authorName={book.author.name}

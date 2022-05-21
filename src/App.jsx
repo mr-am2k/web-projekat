@@ -11,6 +11,7 @@ import Login from './pages/Login';
 import classes from './App.module.css';
 import { getAuthors } from './store/authors-actions';
 import { getBooks } from './store/books-actions';
+import { getMyBooks } from './store/my-book-actions';
 import { useDispatch } from 'react-redux';
 const App = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const App = () => {
     //Pozivanje prilikom loada aplikaceije, get requestova, koji osiguravaju da su nam svi autori i knjige dostupni, kako bi ih mogli globalno koristiti
     dispatch(getAuthors());
     dispatch(getBooks());
+    dispatch(getMyBooks());
   }, [dispatch]);
   return (
     <Fragment>

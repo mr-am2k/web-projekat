@@ -1,14 +1,14 @@
 import { Container } from '@mui/material';
 import { NavLink, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { adminActions} from '../../store/admin-slice'
+import { adminActions } from '../../store/admin-slice';
 import classes from './Navbar.module.css';
 const MainNavigation = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const adminStatus = useSelector((state) => state.admin.isLoggedIn);
   const adminStatusHandler = () => {
-    dispatch(adminActions.changeLoginStatus(false))
-  }
+    dispatch(adminActions.changeLoginStatus(false));
+  };
   return (
     <Container className={classes.container} maxWidth='lg'>
       <nav className={classes.navbar}>
@@ -24,12 +24,14 @@ const MainNavigation = () => {
           >
             Knjige
           </NavLink>
-          <NavLink
-            className={(navData) => (navData.isActive ? classes.active : '')}
-            to='/my-books'
-          >
-            Moje Knjige
-          </NavLink>
+          {!adminStatus && (
+            <NavLink
+              className={(navData) => (navData.isActive ? classes.active : '')}
+              to='/my-books'
+            >
+              Moje Knjige
+            </NavLink>
+          )}
           {!adminStatus && (
             <NavLink
               className={(navData) => (navData.isActive ? classes.active : '')}
@@ -39,10 +41,7 @@ const MainNavigation = () => {
             </NavLink>
           )}
           {adminStatus && (
-            <Link
-            onClick={adminStatusHandler}
-              to='/'
-            >
+            <Link onClick={adminStatusHandler} to='/'>
               Logout
             </Link>
           )}
