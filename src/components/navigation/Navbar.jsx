@@ -71,7 +71,7 @@ const MainNavigation = () => {
               {!adminStatus && <Link to='/login'>Prijava</Link>}
               {adminStatus && (
                 <Link onClick={adminStatusHandler} to='/'>
-                  Logout
+                  Odjava
                 </Link>
               )}
             </MenuItem>
@@ -102,7 +102,7 @@ const MainNavigation = () => {
           )}
           {adminStatus && (
             <Link onClick={adminStatusHandler} to='/'>
-              Logout
+              Odjava
             </Link>
           )}
         </div>
