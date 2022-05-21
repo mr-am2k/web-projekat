@@ -25,6 +25,15 @@ const getBookID = (books, bookName) => {
   });
   return bookID;
 };
+const getID = (books, bookName) => {
+  let wantedIndex;
+  for (let i = 0; i < books.length; i++) {
+    if (books[i].name === bookName) {
+      wantedIndex = i;
+    }
+  }
+  return wantedIndex;
+};
 const BookCard = (props) => {
   const dispatch = useDispatch();
   const adminStatus = useSelector((state) => state.admin.isLoggedIn);
@@ -79,14 +88,10 @@ const BookCard = (props) => {
     }, 2000);
   };
   const removeFromMyBooksHandler = () => {
-    let indexForRemoving;
     let temporaryBooks = [...myBooks];
-    const removeBookID = props.bookId;
-    indexForRemoving = myBooks.find((book, index) => {
-      if (book.id === removeBookID) return index;
-    });
-    console.log(indexForRemoving);
-    temporaryBooks.splice(indexForRemoving, 1);
+    let i = getID(myBooks, props.bookName)
+    console.log(i)
+    temporaryBooks.splice(i, 1);
     dispatch(updateMyBooks(temporaryBooks));
   };
   return (
